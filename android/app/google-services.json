@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "725775395258",
+    "project_id": "bazaro-cs",
+    "storage_bucket": "bazaro-cs.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:725775395258:android:73da0c188f09b6b77c9583",
+        "android_client_info": {
+          "package_name": "com.example.firebase_auth_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpgcvI5YRzNITI7g30XdqAyKhCdJi8zoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

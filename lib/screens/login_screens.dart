@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,6 +10,22 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  Future<void> signin() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                           border: InputBorder.none, hintText: 'Email'),
                     ),
@@ -69,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: TextField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                           border: InputBorder.none, hintText: 'Password'),
@@ -80,19 +99,22 @@ class _LoginScreenState extends State<LoginScreen> {
               // singin button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                      color: Colors.yellowAccent,
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Center(
-                      child: Text(
-                    'Sign in',
-                    style: GoogleFonts.robotoCondensed(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  )),
+                child: GestureDetector(
+                  onTap: signin,
+                  child: Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        color: Colors.yellowAccent,
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Center(
+                        child: Text(
+                      'Sign in',
+                      style: GoogleFonts.robotoCondensed(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    )),
+                  ),
                 ),
               ),
               SizedBox(height: 25),
